@@ -30,10 +30,10 @@ function addTask(e){
 function addTaskToDOM(task){
 
     const li = document.createElement('li'); // Create a new list item
-    li.className = 'todo-item'; // Add a class for styling
+    li.className = `todo-item${task.completed ? ' completed' : ''}`; // Add class based on completion status
     li.dataset.id = task.id; // Set the data-id attribute to the task's ID
 
-    li.innerHTML = `<input type="checkbox" class="complete-checkbox">
+    li.innerHTML = `<input type="checkbox" class="complete-checkbox" ${task.completed ? 'checked' : ''}>
                 <span class="task">${task.text}</span>
                 <button class="edit-btn">Edit</button>
                 <button class="delete-btn">Delete</button>`;
