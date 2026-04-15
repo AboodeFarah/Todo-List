@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Light and Dark mode switcher</title>
+
+    <style>
+        /* defult light mode style */
+        body{
+            background-color: #fff;
+            color: #000;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+
+        }
+        button{
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        /* dark mode style */
+        button.dark-mode{
+            background-color: #333;
+            color: #fff;
+        }
+        body.dark-mode{
+            background-color: #333;
+            color: #fff;
+        }
+
+    </style>
+
 </head>
 <body>
 
-    <button class="modeToggle">Toggle dark Mode</button>
+    <button id="modeToggle">Toggle dark Mode</button>
     
     <h2>welcome to the light and dark mode switcher</h2>
     <p>this is a simple example demonstrating how to use localStorge to remember user preferences</p>
