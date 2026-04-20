@@ -3,6 +3,19 @@ const todoForm = document.querySelector('#todo-form');
 const todoInput = document.querySelector('#todo-input');
 const todoList = document.querySelector('#todo-list');
 
+document.addEventListener('DOMContentLoaded', loadtask);
+
+function loadtask(){
+
+    const tasks = getTasksFromLocalStorage(); // Retrieve tasks from local storage
+
+
+    tasks.forEach(task => {
+        addTaskToDOM(task); // Add each task to the DOM
+    })
+}
+
+
 //add event listener to the form
 // Event Listener for adding a new task
 todoForm.addEventListener('submit', addTask)
@@ -22,6 +35,7 @@ function addTask(e){
             completed: false
         }
         addTaskToDOM(task); // Add the task to the DOM
+        saveTaskToLocalStorage(task); // Save the task to local storage
 
     }
 
@@ -41,4 +55,19 @@ function addTaskToDOM(task){
     todoList.appendChild(li); // Append the new task to the list
 
     todoInput.value = ''; // Clear the input field
+}
+
+function saveTaskToLocalStorage(task){
+
+    const oldTask = getTasksFromLocalStorage(); // Retrieve existing tasks from local storage 
+    oldTask.push(task); // Add the new task to the array
+
+    localStorage.setItem("task", JSON.stringify(oldTask)); // Save the task to local storage as a JSON string
+
+}
+
+function getTasksFromLocalStorage(){
+    
+    const oldTask = JSON.parse(localStorage.getItem('task') || '[]'); // Retrieve existing tasks from local storage or initialize an empty array
+    return oldTask; // Return the array of tasks
 }
